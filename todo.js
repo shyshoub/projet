@@ -8,8 +8,8 @@ const currentWorkingDirectory = args[1].slice(0, -8);
 
 
 if (fs.existsSync(currentWorkingDirectory +
-		'data.txt') === false) {
-	let createStream = fs.createWriteStream('data.txt');
+		'data.json') === false) {
+	let createStream = fs.createWriteStream('data.json');
 	createStream.end();
 }
 if (fs.existsSync(currentWorkingDirectory +
@@ -36,10 +36,10 @@ const listFunction = () => {
 	// Create a empty array
 	let data = [];
 
-	// Read from data.txt and convert it into a string
+	// Read from data.json and convert it into a string
 	const fileData = fs
 		.readFileSync(currentWorkingDirectory +
-			'data.txt').toString();
+			'data.json').toString();
 
 	// Split the string and store into array
 	data = fileData.split('\n');
@@ -69,15 +69,15 @@ const addFunction = () => {
 		// create a empty array
 		let data = [];
 
-		// Read the data from file data.txt and
+		// Read the data from file data.json and
 		// convert it in string
 		const fileData = fs
 			.readFileSync(currentWorkingDirectory +
-				'data.txt').toString();
+				'data.json').toString();
 
 		// New task is added to previous data
 		fs.writeFile(
-			currentWorkingDirectory + 'data.txt',
+			currentWorkingDirectory + 'data.json',
 			newTask + '\n' + fileData,
 
 			function(err) {
@@ -112,7 +112,7 @@ const deleteFunction = () => {
 		// it into string
 		const fileData = fs
 			.readFileSync(currentWorkingDirectory +
-				'data.txt').toString();
+				'data.json').toString();
 
 		data = fileData.split('\n');
 		let filterData = data.filter(function(value) {
@@ -139,7 +139,7 @@ const deleteFunction = () => {
 			
 			// Write the new data back in file
 			fs.writeFile(
-				currentWorkingDirectory + 'data.txt',
+				currentWorkingDirectory + 'data.json',
 				newData,
 				function(err) {
 					if (err) throw err;
@@ -175,17 +175,17 @@ const doneFunction = () => {
 		let dateString = dateobj.toISOString()
 					.substring(0, 10);
 		
-		// Read the data from data.txt
+		// Read the data from data.json
 		const fileData = fs
 			.readFileSync(currentWorkingDirectory
-				+ 'data.txt').toString();
+				+ 'data.json').toString();
 		
 		// Read the data from done.txt
 		const doneData = fs
 			.readFileSync(currentWorkingDirectory
 				+ 'done.txt').toString();
 		
-		// Split the data.txt data
+		// Split the data.json data
 		data = fileData.split('\n');
 		
 		// Filter for any empty lines
@@ -201,7 +201,7 @@ const doneFunction = () => {
 			
 		} else {
 			
-			// Delete the task from data.txt data
+			// Delete the task from data.json data
 			// and store it
 			const deleted = filterData.splice(
 				filterData.length - doneIndex, 1);
@@ -209,9 +209,9 @@ const doneFunction = () => {
 			// Join the array to create a string
 			const newData = filterData.join('\n');
 			
-			// Write back the data in data.txt
+			// Write back the data in data.json
 			fs.writeFile(
-				currentWorkingDirectory + 'data.txt',
+				currentWorkingDirectory + 'data.json',
 				newData,
 				
 				function(err) {
@@ -241,7 +241,7 @@ const doneFunction = () => {
 
 const reportFunction = () => {
 	
-	// Create empty array for data of data.txt
+	// Create empty array for data of data.json
 	let todoData = [];
 	
 	// Create empty array for data of done.txt
@@ -257,7 +257,7 @@ const reportFunction = () => {
 	// Read data from both the files
 	const todo = fs.readFileSync(
 			currentWorkingDirectory
-			+ 'data.txt').toString();
+			+ 'data.json').toString();
 
 	const done = fs.readFileSync(
 		currentWorkingDirectory
