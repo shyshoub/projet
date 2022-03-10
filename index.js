@@ -34,7 +34,7 @@ $ node index.js report		 # Statistics`;
 	console.log(UsageText);
 };
 
-/////////////////////////////////////////////////////////////////////////
+//////////////////////////////// MONTRE LA LISTE /////////////////////////////////////////
 const listFunction = () => {
 
 	// Create a empty array
@@ -60,9 +60,9 @@ const listFunction = () => {
 		console.log((filterData.length - i) + '. ' +
 			filterData[i]);
 	}
-};
+}
 
-/////////////////////////////////////////////////////////////////////////
+//////////////////////AJOUTER UN ELEMENT DANS LA LISTE///////////////////////////////////////////////////
 const addFunction = () => {
 
 	// New todo string argument is stored
@@ -102,7 +102,7 @@ const addFunction = () => {
 	}
 };
 
-/////////////////////////////////////////////////////////////////////////
+//////////////////////// SUPPRIMER UN ELEMENT DANS LA LISTE/////////////////////////////////////////////////
 const deleteFunction = () => {
 
 	// Store which index is passed
@@ -162,7 +162,7 @@ const deleteFunction = () => {
 	}
 };
 
-/////////////////////////////////////////////////////////////////////////
+//////////////////////// MARQUE UNE TACHE COMME FAITE /////////////////////////////////////////////////
 const doneFunction = () => {
 	
 	// Store the index passed as argument
@@ -230,7 +230,7 @@ const doneFunction = () => {
 				// Write the stored task in done.txt
 				// along with date string
 				currentWorkingDirectory + 'done.txt',
-				'x ' + dateString + ' ' + deleted
+				'V ' + dateString + ' ' + deleted
 								+ '\n' + doneData,
 				function(err) {
 					if (err) throw err;
@@ -246,7 +246,7 @@ const doneFunction = () => {
 	}
 };
 
-/////////////////////////////////////////////////////////////////////////
+////////////////////////// MONTRE LE NOMBRE DE TACHE DANS LA LISTE ET LE NOMBRE DE TACHE FAITE///////////////////////////////////////////////
 const reportFunction = () => {
 	
 	// Create empty array for data of data.json
@@ -285,52 +285,52 @@ const reportFunction = () => {
 	console.log(
 		dateString +
 		' ' +
-		'Pending : ' +
+		'nombre de tâche  : ' +
 		filterTodoData.length +
-		' Completed : ' +
+		' nombre de tâche faite : ' +
 		filterDoneData.length,
 		// Log the stats calculated
 	);
 };
-
+/////////////////////////////////////////// MENU ///////////////////////////////////////
 switch (args[2]) {
-	case 'add':
+	case 'add': /////// AJOUTER UNE TACHE 
 		{
 			addFunction();
 			break;
 		}
 
-	case 'ls':
+	case 'ls': ////// MONTRE LA LISTE
 		{
 			listFunction();
 			break;
 		}
 
-	case 'del':
+	case 'del': ////// SUPPRIMER UNE TACHE
 		{
 			deleteFunction();
 			break;
 		}
 
-	case 'done':
+	case 'done': ///// MARQUER UNE TACHE COMME FAITE
 		{
 			doneFunction();
 			break;
 		}
 
-	case 'help':
+	case 'help': /// MONTRE LE MENU DU README
 		{
 			InfoFunction();
 			break;
 		}
 
-	case 'report':
+	case 'report': ////// RENVOIE LE COMPTE RENDU DE LA LISTE
 		{
 			reportFunction();
 			break;
 		}
 
-	default:
+	default: ////// MONTRER LE MENU
 		{
 			InfoFunction();
 			// We will display help when no
@@ -338,4 +338,6 @@ switch (args[2]) {
 			// argument is passed
 		}
 }
+
+///////////////////////////////////////////////////////////////////
 
